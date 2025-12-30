@@ -97,7 +97,7 @@
 
 <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
 	<div class="text-center">
-        <h2><span>Diffcodec: Generative Codec Based on Diffusion Model for Speech Coding</span></h2>
+        <h2><span>Comcodec: High-fidelity Speech Codec based on Complex Spectrum</span></h2>
 		<br> 
 		<p>  
 			Huaifeng Zhang <sup>1</sup>, 
@@ -168,7 +168,7 @@
 			<img src="pics/CDMD.png" width="1000" alt="">
 		</p>
 		<p style="text-align: center;">
-		(a) Single-scale complex discriminator, (b) Multi-scale complex discriminator.
+		<b>(a) Single-scale complex discriminator, (b) Multi-scale complex discriminator.</b>
 		</p>
 </div>
 	
@@ -181,133 +181,62 @@
 				<thead> 
 					<tr>
 					<th style="text-align: center">Models</th>
-					<th style="text-align: center">121_121726_000005_000001.wav</th>
-					<th style="text-align: center">121_121726_000020_000001.wav</th>
-					<th style="text-align: center">1089_134686_000005_000001.wav</th>
-					<th style="text-align: center">1089_134686_000020_000001.wav</th>
-					<th style="text-align: center">1995_1836_000042_000000.wav</th>
-					<th style="text-align: center">1995_1836_000045_000000.wav</th>
+					<th style="text-align: center">sample1</th>
+					<th style="text-align: center">sample2</th>
+					<th style="text-align: center">sample3</th>
+					<th style="text-align: center">sample4</th>
+					<th style="text-align: center">sample5</th>
 					</tr>
 				</thead>
 				<tbody>
 										<tr>
 						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Original input</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/121_121726_000000_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/121_121726_000004_000003.wav" >Your browser does not support the audio element.</audio></td>
 						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/121_121726_000007_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/121_121726_000008_000002.wav" >Your browser does not support the audio element.</audio></td>
 					</tr>
 										<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Coding output</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">+Complex Codec</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+complex codec/121_121726_000000_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+complex codec/121_121726_000004_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+complex codec/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+complex codec/121_121726_000007_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+complex codec/121_121726_000008_000002.wav" >Your browser does not support the audio element.</audio></td>
 					</tr>
 					<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v1</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">+Phase Invariant</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+phase/121_121726_000000_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+phase/121_121726_000004_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+phase/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+phase/121_121726_000007_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+phase/121_121726_000008_000002.wav" >Your browser does not support the audio element.</audio></td>
 					</tr>
 					<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v2</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">+Codebook Pretrain</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+pretrain/121_121726_000000_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+pretrain/121_121726_000004_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+pretrain/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+pretrain/121_121726_000007_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+pretrain/121_121726_000008_000002.wav" >Your browser does not support the audio element.</audio></td>
 					</tr>
 					<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v3</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">+Discriminator</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+Discriminator/121_121726_000000_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+Discriminator/121_121726_000004_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+Discriminator/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+Discriminator/121_121726_000007_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+Discriminator/121_121726_000008_000002.wav" >Your browser does not support the audio element.</audio></td>
 					</tr>
 					<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v4</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">+Balance Training</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+balance/121_121726_000000_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+balance/121_121726_000004_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+balance/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+balance/121_121726_000007_000003.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/AB/+balance/121_121726_000008_000002.wav" >Your browser does not support the audio element.</audio></td>
 					</tr>
-					<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v5</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
-					</tr>
-					<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v1</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
-					</tr>
-					<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v2-v1</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
-					</tr>
-					<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v2-v2</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
-					</tr>		
-										<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v2-v3</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
-					</tr>	
-										<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v2-v4</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
-					</tr>	
-										<tr>
-						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diffcodec</td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
-						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
-					</tr>	
-			
 				</tbody>
 			</table>
 		</div>
@@ -348,6 +277,7 @@
 	</footer> -->
 </body>
 </html>
+
 
 
 
