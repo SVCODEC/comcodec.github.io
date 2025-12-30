@@ -99,7 +99,7 @@
 	<div class="text-center">
 <!-- 		<h1>:</h1> -->
 <!--         <h2><span>Diffcodec: Generative Codec Based on Diffusion Model for Speech Coding</span></h2> -->
-		<h2><span>Diffcodec</span></h2>
+		<h2><span>Comcodec</span></h2>
 <!-- 		        <h3>Diffcodec: Generative Codec Based on Diffusion Model for Speech Coding</h3> -->
 		<br> 
 		<p>  
@@ -129,19 +129,21 @@
 	<p>
 <!--         <b>Abstract.</b>
 		<div class="justify-text">
-  			Although generative adversarial network (GAN)-based speech codecs achieve considerable intelligibility and perceptual quality, the inherent discrete nature of the quantization process inevitably introduces imperceptible 
-			phase distortions and spectral gaps during the reconstruction of generated speech from discrete vectors. These distortions manifest as subtle waveform misalignments, hinder the improvement of objective metrics, and stem 
-			from an incomplete mapping from continuous coding vectors to discrete vectors. Inspired by the superior performance of diffusion models in speech enhancement, we innovatively reformulate GAN-based codecs as a 
-			diffusion-based generative codec, termed Diffcodec. This model employs a U-Net to model the data probability distribution from generated speech to original speech. Instead of forcing generated speech to gradually 
-			approximate original speech through feature constraints via discriminative adversarial learning, it learns the probability distribution from generated speech to original speech through a forward process and then recovers 
-			generated samples closest to the original speech via reverse denoising---innovatively transforming the adversarial training task into a generative task. To train multiple model variants, we also introduce a multi-stage 
-			training framework, which not only shortens training time but also improves output speech quality. This enables Diffcodec to provide a portable solution for generative tasks across different frameworks. Additionally, we 
-			introduce the concept of multi-resolution and apply it to speech reconstruction tasks, supplementing and improving spectral details at different scales, thereby significantly enhancing the output speech quality. For 
-			comprehensive comparative evaluation, we implement multiple mainstream GAN-based model variants and multiple Diffcodec variants. Comparative experiments demonstrate that Diffcodec exhibits absolute advantages over 
-			GAN-based codecs in various aspects such as training time, training stability, objective metrics, and spectral details, achieving a Perceptual Evaluation of Speech Quality (PESQ) of 3.59, an Extended Short-Time 
-			Objective Intelligibility (ESTOI) of 0.92, and a Virtual Speech Quality Objective Listener (ViSQOL) of 3.62. This confirms the innovation and superiority of applying diffusion models to the speech coding process.
+		To ensure encoding real-time performance, traditional time-domain end-to-end speech codecs only adopt waveform information as input features and ignore original phase information. Such codecs rely on strong waveform 
+		reconstruction capabilities to recover phase, and although they can achieve high speech intelligibility and quality, the phase problem remains an insurmountable challenge, resulting in limited room for speech quality improvement. 
+		Addressing the limitation that traditional time-domain codec frameworks underutilize phase information in the field of speech coding, this study takes phase information reconstruction as the core entry point, breaks through the 
+		constraints of time-domain coding-decoding paradigms, and proposes a complex spectrum-based encoder and decoder with amplitude and phase information as input features. The model leverages complex convolution layers and Transformer 
+		architecture to capture feature correlations. Meanwhile, a set of complementary complex spectrum discriminators are designed: a multi-scale complex discriminator for holistic complex feature processing (constraining the model to 
+		learn complete complex information), and a single-scale complex discriminator specifically targeting amplitude and phase (constraining the model to learn amplitude and phase information). These two discriminators synergistically 
+		form the Generative Adversarial Network (GAN)-based Comcodec model. Considering the mutual interference between the quantization process and the adversarial generation process, the model integrates a balanced training strategy 
+		and a phased training strategy to enhance the stability of adversarial training. Comprehensive experiments were conducted to validate the model's performance: ablation experiments confirm the effectiveness of the synergistic 
+		effect between the model structure and training strategies, and the two form a synergistic gain to steadily improve model performance; comparative experiments demonstrate that the model achieves a leading advantage in output 
+		speech quality among mainstream codecs in recent years, with speech quality assessment metrics reaching Perceptual Evaluation of Speech Quality (PESQ) of 3.31 and Virtual Speech Quality Objective Listener (ViSQOL) of 3.99; 
+		latency experiments show that the model has a Real-Time Factor (RTF) of 0.048, with encoding efficiency comparable to that of time-domain end-to-end models, breaking through the bottleneck of timeliness limitations in complex 
+		spectrum coding; cross-dataset experiments verify the model's strong generalization capability. Additionally, this study analyzes the feasibility of model deployment, which exhibits good compatibility with mainstream deployment 
+		platforms. In summary, the proposed Comcodec is a novel complex feature-based codec with superior encoding performance, providing a new high-performance and real-time technical solution for the speech coding field.
 		</div>
-	<b>Keywords: speech codec; generative adversarial network; schrödinger bridge; diffusion model; multi-resolution</b>
+	<b>Keywords: speech codec; generative adversarial network; complex feature</b>
 		<br> -->
 <!-- 		<b>Update:</b> We release <b>the code and pre-trained checkpoint of FACodec </b> at <a href="https://huggingface.co/spaces/amphion/naturalspeech3_facodec">here</a> ! -->
 		<br>
@@ -157,40 +159,39 @@
 
 <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
 	<h2 id="model-overview" style="text-align: center;">
-		<span>The model's training modes and the available portable solutions</span>
-<!-- 		<span>Diffcodec model</span> -->
+		<span>Comcodec model</span>
 	</h2>
 		<p style="text-align: center;">
-			<img src="pics/model0808.png" width="1000" alt="">
+			<img src="pics/comcodec.png" width="1000" alt="">
 		</p>
-<!-- 		<p style="text-align: center;">
-		Structural topology of the Diffcodec model.
-		</p> -->
+ 		<p style="text-align: center;">
+		Comcodec model structure framework.
+		</p> 
 </div>
 <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
 	<h2 id="model-overview" style="text-align: center;">
-<!-- 		<span>Diffusion process based on the Schrödinger bridge</span> -->
-		<span>SB diffusion model</span>
+		<span>Functional modules</span>
 	</h2>
 		<p style="text-align: center;">
-			<img src="pics/SB.png" width="1000" alt="">
+			<img src="pics/comcodec.png" width="1000" alt="">
 		</p>
-<!-- 		<p style="text-align: center;">
-		Structural topology of the Diffcodec model.
-		</p> -->
+ 		<p style="text-align: center;">
+		Internal functional module structure of the comcodec model.
+		</p> 
 </div>
 
-<!-- <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+<div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
 	<h2 id="model-overview" style="text-align: center;">
 		<span>The Structure of The U-NET Network</span>
 	</h2>
 		<p style="text-align: center;">
-			<img src="pics/unet.png" width="1000" alt="">
+			<img src="pics/CD.png" width="500" alt="">
+			<img src="pics/MD.png" width="500" alt="">
 		</p>
-<!-- 		<p style="text-align: center;">
+		<p style="text-align: center;">
 		Structural topology of the U-Net network.
-		</p> -->
-</div> -->
+		</p>
+</div>
 
 <!-- <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
 	<h2 style="text-align: center;"><span>Network configurations of all model variants</h2>
@@ -388,12 +389,12 @@
 
 <div class="custom-container2 pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
 	<h2 style="text-align: center;"> <span>Output speech of the model variant</span> </h2>
-	We select 6 speech samples from three speakers. 
+	We select 5 speech samples from three speakers. 
 		<div class="table-responsive pt-3" tabindex="0">
 			<table class="table table-hover pt-2">			
 				<thead> 
 					<tr>
-					<th style="text-align: center">Variants</th>
+					<th style="text-align: center">Models</th>
 					<th style="text-align: center">121_121726_000005_000001.wav</th>
 					<th style="text-align: center">121_121726_000020_000001.wav</th>
 					<th style="text-align: center">1089_134686_000005_000001.wav</th>
@@ -561,6 +562,7 @@
 	</footer> -->
 </body>
 </html>
+
 
 
 
