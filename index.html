@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8"> 
+	<meta name="generator" content="Hugo 0.88.1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	<link rel="stylesheet" href="css/normalize.css">
+	<title>Diffcodec</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	  <style>
+		  .image-container {
+			  display: flex;
+			  flex-wrap: wrap;
+			  justify-content: center;
+		  }
+		  .custom-width-container {
+			  max-width: none; /* 取消最大宽度限制 */ 
+			  width: 100%;
+			  padding: 0;
+		  }
+		  .ablation-table-wrap {
+			  overflow-x: visible; /* 显示溢出内容 */ 
+			  width: 100%;
+		  }
+		  .ablation-table-container { 
+			  width: 100%;
+			  overflow-x: visible; /* 小屏幕时允许滚动 */
+		  }
+		  .ablation-table {
+			  min-width: 10000px; /* 强制表格最小宽度 */
+			  table-layout: fixed;
+			  width: 100%;
+		  }
+		  .ablation-table th,
+		  .ablation-table td {
+			  width: 180px; /* 固定列宽 */
+			  white-space: nowrap;
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+			  box-sizing: border-box;
+		  }
+		  .table th,
+		  .table td {
+			  white-space: nowrap; /* 防止内容换行 */
+			  overflow: hidden;
+			  text-overflow: ellipsis;
+		  }
+		  .table-responsive {
+			  overflow: visible; /* 让表格超出部分显示，配合容器宽度 */
+		  }
+		  .image-container img {
+			  width: 600px;
+		  }
+		  h2 span {
+			  font-weight: bold;
+			  color: blue;
+		  }
+		  .justify-text {
+			  text-align: justify;
+		  }
+		  .custom-container {
+			  max-width: 1800px !important; /* 自定义宽度 */
+			  width: 100%;
+			  margin: 0 auto; /* 居中容器 */
+			  padding-left: 15px; /* 保留左侧内边距，模拟响应式效果 */
+			  padding-right: 15px; /* 保留右侧内边距，模拟响应式效果 */
+		  }
+		  	  .custom-container2 {
+			  max-width: 2550px !important; /* 自定义宽度 */
+			  width: 100%;
+			  margin: 0 auto; /* 居中容器 */
+			  padding-left: 5px; /* 保留左侧内边距，模拟响应式效果 */
+			  padding-right: 5px; /* 保留右侧内边距，模拟响应式效果 */
+		  }
+		  .bold-top-border {
+			  border-top: 3px solid black; /* 顶部边框加粗，3px可调整粗细 */
+		  }
+/* 		  .container {
+			  max-width: 2000px !important; /* 强制覆盖，可调整数值 */
+			  padding-left: 15px; /* 保留响应式内边距 */
+			  padding-right: 15px;
+		  } */
+  </style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1091.0" data-gr-ext-installed="">
+
+<!-- <div class=" container" > -->
+<header>
+</header>
+<main>
+<article itemscope itemtype="https://schema.org/BlogPosting">
+
+<div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<div class="text-center">
+<!-- 		<h1>:</h1> -->
+<!--         <h2><span>Diffcodec: Generative Codec Based on Diffusion Model for Speech Coding</span></h2> -->
+		<h2><span>Diffcodec</span></h2>
+<!-- 		        <h3>Diffcodec: Generative Codec Based on Diffusion Model for Speech Coding</h3> -->
+		<br> 
+		<p>  
+			Huaifeng Zhang <sup>1</sup>, 
+<!-- 			Yong Gao<sup>2</sup>, 
+			Guigeng Li<sup>1</sup>, 
+			Zhen Wang <sup>1</sup>, 
+			Tingting Lv<sup>1*</sup>,
+			Hao Zhang<sup>1*</sup>, -->
+<!-- 			Wenbin Jiang<sup>2</sup>,  -->
+<!-- 			Guigeng Li<sup>1</sup>,  -->
+<!-- 			Peifei Wu<sup>1</sup>,  -->
+<!-- 			Yong Gao<sup>2</sup>,  -->
+<!-- 			Tianpei Liu<sup>3</sup>,  -->
+<!-- 			Hao Zhang<sup>1*</sup>, -->
+		</p>  
+<!-- 		<p>  
+			<sup>1</sup>College of Electronic Engineerin, Ocean University of China, QingDao, 266100, China 
+		</p>  
+		<p >
+			<sup>2</sup>College of Shipbuilding Engineering, Qingdao Innovation and Development Base of Harbin Engineering University, QingDao, 266000, China
+		</p>   -->
+<!-- 		<p >
+			<sup>3</sup>School of Automation (School of Artificial Intelligence), Hangzhou Dianzi University, HangZhou, 310018, China
+		</p>   -->
+	</div>
+	<p>
+<!--         <b>Abstract.</b>
+		<div class="justify-text">
+  			Although generative adversarial network (GAN)-based speech codecs achieve considerable intelligibility and perceptual quality, the inherent discrete nature of the quantization process inevitably introduces imperceptible 
+			phase distortions and spectral gaps during the reconstruction of generated speech from discrete vectors. These distortions manifest as subtle waveform misalignments, hinder the improvement of objective metrics, and stem 
+			from an incomplete mapping from continuous coding vectors to discrete vectors. Inspired by the superior performance of diffusion models in speech enhancement, we innovatively reformulate GAN-based codecs as a 
+			diffusion-based generative codec, termed Diffcodec. This model employs a U-Net to model the data probability distribution from generated speech to original speech. Instead of forcing generated speech to gradually 
+			approximate original speech through feature constraints via discriminative adversarial learning, it learns the probability distribution from generated speech to original speech through a forward process and then recovers 
+			generated samples closest to the original speech via reverse denoising---innovatively transforming the adversarial training task into a generative task. To train multiple model variants, we also introduce a multi-stage 
+			training framework, which not only shortens training time but also improves output speech quality. This enables Diffcodec to provide a portable solution for generative tasks across different frameworks. Additionally, we 
+			introduce the concept of multi-resolution and apply it to speech reconstruction tasks, supplementing and improving spectral details at different scales, thereby significantly enhancing the output speech quality. For 
+			comprehensive comparative evaluation, we implement multiple mainstream GAN-based model variants and multiple Diffcodec variants. Comparative experiments demonstrate that Diffcodec exhibits absolute advantages over 
+			GAN-based codecs in various aspects such as training time, training stability, objective metrics, and spectral details, achieving a Perceptual Evaluation of Speech Quality (PESQ) of 3.59, an Extended Short-Time 
+			Objective Intelligibility (ESTOI) of 0.92, and a Virtual Speech Quality Objective Listener (ViSQOL) of 3.62. This confirms the innovation and superiority of applying diffusion models to the speech coding process.
+		</div>
+	<b>Keywords: speech codec; generative adversarial network; schrödinger bridge; diffusion model; multi-resolution</b>
+		<br> -->
+<!-- 		<b>Update:</b> We release <b>the code and pre-trained checkpoint of FACodec </b> at <a href="https://huggingface.co/spaces/amphion/naturalspeech3_facodec">here</a> ! -->
+		<br>
+		<br>
+<!-- 		This research is done in alignment with Microsoft's responsible AI principles. -->
+		<br>
+		<br>
+			This page is <b> for research demonstration purposes </b> only.
+		<br>
+
+      </p>
+</div>
+
+<div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<h2 id="model-overview" style="text-align: center;">
+		<span>The model's training modes and the available portable solutions</span>
+<!-- 		<span>Diffcodec model</span> -->
+	</h2>
+		<p style="text-align: center;">
+			<img src="pics/model0808.png" width="1000" alt="">
+		</p>
+<!-- 		<p style="text-align: center;">
+		Structural topology of the Diffcodec model.
+		</p> -->
+</div>
+<div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<h2 id="model-overview" style="text-align: center;">
+<!-- 		<span>Diffusion process based on the Schrödinger bridge</span> -->
+		<span>SB diffusion model</span>
+	</h2>
+		<p style="text-align: center;">
+			<img src="pics/SB.png" width="1000" alt="">
+		</p>
+<!-- 		<p style="text-align: center;">
+		Structural topology of the Diffcodec model.
+		</p> -->
+</div>
+
+<!-- <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<h2 id="model-overview" style="text-align: center;">
+		<span>The Structure of The U-NET Network</span>
+	</h2>
+		<p style="text-align: center;">
+			<img src="pics/unet.png" width="1000" alt="">
+		</p>
+<!-- 		<p style="text-align: center;">
+		Structural topology of the U-Net network.
+		</p> -->
+</div> -->
+
+<!-- <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<h2 style="text-align: center;"><span>Network configurations of all model variants</h2>
+		<div class="table-responsive pt-3" tabindex="0">
+<!-- 			<table class="table table-hover pt-2"> -->
+<!-- 				<table class="table table-bordered">
+		<thead>
+                    <tr class="bold-top-border">
+                        <th style="text-align: center;">Variants</th>
+                        <th style="text-align: center;">Generator</th>
+                        <th colspan="5" style="text-align: center;">Discriminators</th>
+                        <th colspan="2" style="text-align: center;">Diffusion</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align: center;">MPD</th>
+                        <th style="text-align: center;">MSD</th>
+                        <th style="text-align: center;">CSTFTD</th>
+                        <th style="text-align: center;">MRSTFTD</th>
+                        <th style="text-align: center;">MSSTFTD</th>
+                        <th style="text-align: center;">SGM</th>
+                        <th style="text-align: center;">SB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">GAN-v1</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">GAN-v2</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">GAN-v3</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">GAN-v4</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">GAN-v5</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">Diff-v1</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">Diff-v2</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                    </tr>
+					<tr class="bold-top-border">
+					</tr>
+				</tbody>
+			  </table>
+		</div> -->
+</div> -->
+	
+<!-- <div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+        <h2 style="text-align: center;"><span>Model parameters and metrics of all model variants</h2>
+        <div class="table-responsive pt-3" tabindex="0">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="bold-top-border">
+                        <th style="text-align: center;">Variants</th>
+                        <th style="text-align: center;">Score Matching</th>
+                        <th colspan="5" style="text-align: center;">Reconstruction Loss</th>
+                        <th colspan="2" style="text-align: center;">Mel-spectrogram</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th style="text-align: center;">L1 wave-loss</th>
+                        <th style="text-align: center;">L1 mel-loss</th>
+                        <th style="text-align: center;">L2 mel-loss</th>
+                        <th style="text-align: center;">L1 power-loss</th>
+                        <th style="text-align: center;">L2 power-loss</th>
+                        <th style="text-align: center;">Single Resolution</th>
+                        <th style="text-align: center;">Multi Resolution</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="text-align: center;">Diff-v1</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">Diff-v2-v1 (baseline)</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">Diff-v2-v2</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">Diff-v2-v3</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: center;">Diff-v2-v4</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✔</td>
+                        <td style="text-align: center;">✖</td>
+                        <td style="text-align: center;">✔</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+	
+
+<div class="custom-container2 pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">
+	<h2 style="text-align: center;"> <span>Output speech of the model variant</span> </h2>
+	We select 6 speech samples from three speakers. 
+		<div class="table-responsive pt-3" tabindex="0">
+			<table class="table table-hover pt-2">			
+				<thead> 
+					<tr>
+					<th style="text-align: center">Variants</th>
+					<th style="text-align: center">121_121726_000005_000001.wav</th>
+					<th style="text-align: center">121_121726_000020_000001.wav</th>
+					<th style="text-align: center">1089_134686_000005_000001.wav</th>
+					<th style="text-align: center">1089_134686_000020_000001.wav</th>
+					<th style="text-align: center">1995_1836_000042_000000.wav</th>
+					<th style="text-align: center">1995_1836_000045_000000.wav</th>
+					</tr>
+				</thead>
+				<tbody>
+										<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Original input</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/clean/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+										<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Coding output</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/noisy/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v1</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v1/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v2</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v2/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v3</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v3/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v4</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v4/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">GAN-v5</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/GAN-v5/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v1</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v1/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v2-v1</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v1/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>
+					<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v2-v2</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v2/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>		
+										<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v2-v3</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v3/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>	
+										<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diff-v2-v4</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diff-v2-v4/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>	
+										<tr>
+						<td style="text-align: center;vertical-align:middle;width: 20px;min-width: 20px">Diffcodec</td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/121_121726_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/121_121726_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/1089_134686_000005_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/1089_134686_000020_000001.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/1995_1836_000042_000000.wav" >Your browser does not support the audio element.</audio></td>
+						<td style="text-align: center;width: 200px"><audio controls="controls" style="width: 200px;"><source src="audio/Diffcodec/1995_1836_000045_000000.wav" >Your browser does not support the audio element.</audio></td>
+					</tr>	
+			
+				</tbody>
+			</table>
+		</div>
+</div>
+	
+<!-- 	<div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">	
+		<h2 id=Ethics-Statement style="text-align: center;">	
+			Ethics Statement
+		</h2>
+		<p>
+			Since our model could synthesize speech with great speaker similarity, it may carry potential risks in misuse of the model, such as spoofing voice identification or impersonating a specific speaker. We conducted the experiments under the assumption that the user agree to be the target speaker in speech synthesis. To prevent misuse, it is crucial to develop a robust synthesized speech detection model and establish a system for individuals to report any suspected misuse.
+		</p>
+	</div> -->
+	
+<!-- 	<div class="container pt-5 mt-5 shadow p-5 mb-5 bg-white rounded">	
+		<h2 id=related-works style="text-align: center;">	
+			Other Related Works
+		</h2>
+		<p>
+			<a href="/naturalspeech2/">NaturalSpeech 2:	Latent Diffusion Models are Natural and Zero-Shot Speech and Singing Synthesizers</a>
+		</p>
+		<p>
+			<a href="/naturalspeech/">NaturalSpeech: End-to-End Text to Speech Synthesis with Human-Level Quality</a>
+		</p>
+		<p>
+			<a href="/prompttts2/">PromptTTS 2: Describing and Generating Voices with Text Prompt</a>
+		</p>
+		<p>
+			<a href="/">Speech research conducted at Microsoft Research Asia</a>
+		</p>
+	</div> -->
+</article>
+</main>
+<!-- </div> -->
+<!-- 	<footer>
+		<hr>
+		<a href="https://go.microsoft.com/fwlink/?LinkId=521839">Privacy & Cookies</a>
+	</footer> -->
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
