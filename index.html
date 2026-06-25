@@ -122,19 +122,14 @@
 	<p>
         <b>Abstract.</b>
 		<div class="justify-text">
-		To ensure encoding real-time performance, traditional time-domain end-to-end speech codecs only adopt waveform information as input features and ignore original phase information. Such codecs rely on strong waveform 
-		reconstruction capabilities to recover phase, and although they can achieve high speech intelligibility and quality, the phase problem remains an insurmountable challenge, resulting in limited room for speech quality improvement. 
-		Addressing the limitation that traditional time-domain codec frameworks underutilize phase information in the field of speech coding, this study takes phase information reconstruction as the core entry point, breaks through the 
-		constraints of time-domain coding-decoding paradigms, and proposes a complex spectrum-based encoder and decoder with amplitude and phase information as input features. The model leverages complex convolution layers and Transformer 
-		architecture to capture feature correlations. Meanwhile, a set of complementary complex spectrum discriminators are designed: a multi-scale complex discriminator for holistic complex feature processing (constraining the model to 
-		learn complete complex information), and a single-scale complex discriminator specifically targeting amplitude and phase (constraining the model to learn amplitude and phase information). These two discriminators synergistically 
-		form the Generative Adversarial Network (GAN)-based Comcodec model. Considering the mutual interference between the quantization process and the adversarial generation process, the model integrates a balanced training strategy 
-		and a phased training strategy to enhance the stability of adversarial training. Comprehensive experiments were conducted to validate the model's performance: ablation experiments confirm the effectiveness of the synergistic 
-		effect between the model structure and training strategies, and the two form a synergistic gain to steadily improve model performance; comparative experiments demonstrate that the model achieves a leading advantage in output 
-		speech quality among mainstream codecs in recent years, with speech quality assessment metrics reaching Perceptual Evaluation of Speech Quality (PESQ) of 3.31 and Virtual Speech Quality Objective Listener (ViSQOL) of 3.99; 
-		latency experiments show that the model has a Real-Time Factor (RTF) of 0.048, with encoding efficiency comparable to that of time-domain end-to-end models, breaking through the bottleneck of timeliness limitations in complex 
-		spectrum coding; cross-dataset experiments verify the model's strong generalization capability. Additionally, this study analyzes the feasibility of model deployment, which exhibits good compatibility with mainstream deployment 
-		platforms. In summary, the proposed Comcodec is a novel complex feature-based codec with superior encoding performance, providing a new high-performance and real-time technical solution for the speech coding field.
+Most current time-domain neural speech codecs operate directly on the waveform and lack explicit constraints on phase reconstruction, relying instead on the generator's implicit capacity to recover phase structure. 
+While this paradigm has achieved strong results, the absence of dedicated phase modeling leaves room for further quality improvement. 
+To address this limitation, this paper proposes Comcodec, a generative adversarial network (GAN)-based codec. Its generator consists of a complex-spectrum-based encoder, quantizer, 
+and decoder that take the joint magnitude and phase spectra as input features, while the discriminator comprises a complementary set of complex-spectrum-based single-scale and multi-scale discriminators. 
+Considering the mutual interference between the quantization process and the adversarial generation process, the model integrates a balanced training strategy and a phased training strategy to enhance the stability of adversarial training. 
+Extensive experiments are conducted to validate Comcodec's performance. Operating at 4 kbps (scalable from 500 bps to 4 kbps), Comcodec achieves strong objective scores, a Perceptual Evaluation of Speech Quality (PESQ) of 3.31, 
+and a Virtual Speech Quality Objective Listener (ViSQOL) of 3.99, a MUSHRA subjective score of 85, and leading phase-specific metrics, with a real-time factor (RTF) of 0.06. Ablation studies confirm the synergistic gain 
+between the model design and training strategies. Cross-dataset evaluations demonstrate strong generalization, and deployment feasibility analysis shows compatibility with mainstream platforms. 
 		</div>
 	<b>Keywords: speech codec; generative adversarial network; complex feature</b>
 	      </p>
